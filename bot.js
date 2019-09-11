@@ -100,7 +100,7 @@ bot.on('message', async(message) => {
     let args = message.content.split(' ');
     if(args[0] == `${prefix}bc`){
         if(!message.member.hasPermission('MANAGE_GUILD')) return;
-        if(!args[1]) return message.channel.send(`**Usage:** ${prefix}bc [message]`);
+        if(!args[1]) return message.channel.send(`**Please Type The Broadcast Message**`);
         message.guild.members.map((m) => {
             setTimeout(() => {
                 m.send(args.slice(1).join(' ').replace('[user]', m).replace('[server]', message.guild.name)).catch(e => undefined);
