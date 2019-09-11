@@ -325,7 +325,7 @@ bot.on('message' , message => {
                 if(message.content.startsWith(prefix+'support')) {
               const embed = new Discord.RichEmbed()
                 .setTitle("Invite Link")
-                .setDescription(`support server **[here](https://discord.gg/3NRNzzG)**`)
+                .setDescription(`Support Server **[here](https://discord.gg/3NRNzzG)**`)
                 .setColor('RANDOM');
                 
                     message.author.send(embed)
@@ -484,7 +484,7 @@ bot.on('message' , message => {
             } else {
             h = message.member
             }
-            moment.locale('ar'); //TN
+            moment.locale('en'); //TN
             var id = new  Discord.RichEmbed()
             .setColor("RANDOM")
             .setAuthor(`${heg.username}#${heg.discriminator} `,heg.avatarURL)
