@@ -504,7 +504,7 @@ bot.on('message' , message => {
 
 
             bot.on('guildMemberAdd', member=> {
-                member.addRole(member.guild.roles.find("name","1"));
+                member.addRole(member.guild.roles.find("name","community"));
                 });
 
 
