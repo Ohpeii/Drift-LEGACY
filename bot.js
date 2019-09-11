@@ -484,11 +484,11 @@ bot.on('message' , message => {
             } else {
             h = message.member
             }
-            moment.locale('TN'); //TN
+            moment.locale('ar'); //TN
             var id = new  Discord.RichEmbed()
             .setColor("RANDOM")
             .setAuthor(`${heg.username}#${heg.discriminator} `,heg.avatarURL)
-            .setDescription([`**Time** :${moment().format('HH:mm:ss A')} - **Data**: ${moment().format('YYYY/M/D')} - : **Day**: ${moment().format('dddd')}`])
+            .setDescription([`**Time**:${moment().format('HH:mm:ss A')} - **Data**: ${moment().format('YYYY/M/D')} - : **Day**: ${moment().format('dddd')}`])
             message.channel.send(id)
             };
             });
