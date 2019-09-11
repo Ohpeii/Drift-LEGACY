@@ -493,6 +493,13 @@ bot.on('message' , message => {
             };
             });
 
+
+
+
+            bot.on('guildMemberAdd', member => {
+                member.guild.channels.get('620735030783639554').send(`Welcome ${member.user}! Please take a look at #rules-and-info`); 
+            });
+
             
 
 
