@@ -497,15 +497,20 @@ bot.on('message' , message => {
 
 
             bot.on('guildMemberAdd', member => {
-                member.guild.channels.get('620735030783639554').send(`Welcome ${member.user}! Please take a look at #rules-and-info`); 
+                member.guild.channels.get('620735030783639554').send(`Welcome ${member.user}! Please take a look at <#621093103947874311>`); 
             });
 
 
 
 
-            bot.on('guildMemberAdd', member=> {
-                member.addRole(member.guild.roles.find("name","community"));
-                });
+            bot.on('message', message => {
+                const args = message.content.split(" ").slice(1);
+                if(message.content.startsWith('$say')) {
+                         if(!message.author.id == "311584244415594498") return undefined;
+                    var saytext = args.join(" ");
+                    message.channel.send(saytext)
+                };
+              } )
 
 
 
