@@ -312,20 +312,6 @@ bot.on('message', async(message) => {
               
             
 
-            bot.on("message", message => { // ؟؟ هاذا لك عشان تفهمه
-
-                if (message.content.startsWith('.enter')) { // الامر
-                    let args = message.content.split(' ').slice(1); // تعريف الارقس الشيئ الي ينكتب بعد الرقم
-                    
-            if (9182==args){ // غير مكان الرقم الباسوورد حقك
-                message.reply('Accses Sucsses') // اذا نجح الرقم يرد عليك 
-                message.member.addRole(message.guild.roles.find(c => c.name == "MVP")); // + يعطيك رتبة
-                }
-                if (1578!=args){ // اذا مانجح الرقم
-                  message.reply('Accses Denied') // يقولك مانجحة العملية
-            }
-            
-            }});
 
 
 
