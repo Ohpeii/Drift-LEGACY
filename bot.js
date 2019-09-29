@@ -19,45 +19,9 @@ bot.on('ready', () =>{
  
 
 
-bot.on('message', message => {
-  if(message.content.split(' ')[0] == `${prefix}ban`){
-  if(!message.guild || message.author.bot) return undefined;
-      if(!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send('You don\'t have permission.');
-      if(!message.guild.member(bot.user).hasPermission('BAN_MEMBERS')) return message.channel.send('I don\'t have permission.');
-      let args = message.content.split(" ").slice(1);
-      let user = message.guild.members.get(message.content.split(' ')[1]) || message.mentions.members.first();
-      let reason = message.content.split(" ").slice(2).join(" ");
-      if(!user) return message.channel.send(`Usage: ${prefix}ban @mention reason`);
-      if(!reason) reason = 'No reason provided.';
-      if(user.user.id === message.author.id) return message.channel.send('You can\'t ban yourself!');
-      if(message.guild.member(user.user).highestRole.position >= message.guild.member(message.member).highestRole.position) return message.channel.send(`You can't ban **${user.user.tag}** because his role highest than your role!`);
-      if(message.guild.member(user.user).highestRole.position >= message.guild.member(bot.user).highestRole.position) return message.channel.send(`I can't ban **${user.user.tag}** because his role highest than my role!`);
-      if(message.guild.member(user.user).hasPermission('MANAGE_GUILD') || user.user.id == message.guild.owner.id) return message.channel.send(`You can't ban **${user.user.tag}** because he have Administration permissions!`);
-      if(!message.guild.member(user.user).bannable) return message.channel.send(`I can't ban **${user.user.tag}**.`);
-      message.guild.member(user).ban(reason, user);
-      message.channel.send(`Done :+1:, I Banned ${user.user.username} from the server!\nReason: \`\`${reason}\`\``);
-    }
-});
- 
+
  
 
-
-bot.on('message', async(message) => {
-    let args = message.content.split(' ');
-    if(args[0] == `${prefix}kick`){
-        if(!message.guild || message.author.bot) return undefined;
-        if(!message.member.hasPermission('KICK_MEMBERS') || !message.guild.member(bot.user).hasPermission('KICK_MEMBERS')) return;
-        let user = message.guild.members.get(args[1]) || message.mentions.members.first();
-        let reason = args.slice(2).join(" ");
-        if(!user) return message.channel.send(`**Usage:** ${prefix}kick @member [reason]`);
-        if(!reason) reason = 'No reason provided.';
-        if(message.guild.member(user.user).highestRole.position >= message.guild.member(message.member).highestRole.position) return message.channel.send(`You cant kick **${user.user.username}** because his role highest than your role!`);
-        if(message.guild.member(user.user).highestRole.position >= message.guild.member(bot.user).highestRole.position) return message.channel.send(`I cant kick **${user.user.username}** because his role highest than my role!`);
-        if(!message.guild.member(user.user).kickable) return message.channel.send(`I cant kick **${user.user.username}**.`);
-        await message.guild.member(user).kick(reason, user);
-        await message.channel.send(`**${user.user.username}** has been kicked from the server! \`\`${reason}\`\``);
-     }
- });
 
 
 
@@ -65,11 +29,11 @@ bot.on('message', async(message) => {
  bot.on('message', async(message) => {
     if(message.author.juilan || message.channel.type == 'dm') return;
     let args = message.content.split(' ');
-    if(args[0] == `${prefix}mutech`){
+    if(args[0] == `${prefix}MC`){
         if(!message.member.hasPermission('MANAGE_CHANNELS') || !message.guild.me.hasPermission('MANAGE_CHANNELS')) return;
         await message.channel.overwritePermissions(message.guild.id, { SEND_MESSAGES: false });
         await message.channel.send(`The channel has been muted.`);
-    } else if(args[0] == `${prefix}unmutech`){
+    } else if(args[0] == `${prefix}UN`){
         if(!message.member.hasPermission('MANAGE_CHANNELS') || !message.guild.me.hasPermission('MANAGE_CHANNELS')) return;
         await message.channel.overwritePermissions(message.guild.id, { SEND_MESSAGES: null });
         await message.channel.send(`The channel has been unmuted.`);
