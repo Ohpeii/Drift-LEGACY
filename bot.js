@@ -509,6 +509,7 @@ bot.on('message' , message => {
                          if(!message.author.id == "311584244415594498") return undefined;
                     var saytext = args.join(" ");
                     message.channel.send(saytext)
+                    message.delete();
                 };
               } )
 
