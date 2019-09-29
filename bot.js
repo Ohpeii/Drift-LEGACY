@@ -213,19 +213,7 @@ bot.on('message', async(message) => {
 
 
 
-                  bot.on("message", message =>{
-                    let args = message.content.split(" ");
-                    command = args[0];
-                    if (command === `${prefix}Malicious`) {
-                        message.channel.send("My boss is busy"); 
-                    }
-                });
-                
-                /* طريقة اخذ معلومات الايموجي 
-                - تكون رافع الايموجي 
-                - تحط الايموجي وتحط قبله هذا 
-                مثال :emoji:
-                */
+
 
 
 
