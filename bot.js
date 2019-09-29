@@ -33,7 +33,7 @@ bot.on('ready', () =>{
         if(!message.member.hasPermission('MANAGE_CHANNELS') || !message.guild.me.hasPermission('MANAGE_CHANNELS')) return;
         await message.channel.overwritePermissions(message.guild.id, { SEND_MESSAGES: false });
         await message.channel.send(`The channel has been muted.`);
-    } else if(args[0] == `${prefix}UN`){
+    } else if(args[0] == `${prefix}UC`){
         if(!message.member.hasPermission('MANAGE_CHANNELS') || !message.guild.me.hasPermission('MANAGE_CHANNELS')) return;
         await message.channel.overwritePermissions(message.guild.id, { SEND_MESSAGES: null });
         await message.channel.send(`The channel has been unmuted.`);
@@ -43,18 +43,7 @@ bot.on('ready', () =>{
 
  
 
-bot.on('message', async(message) => {
-    if(message.author.julian || message.channel.type == 'dm') return;
-    let args = message.content.split(' ');
-    if(args[0] == `${prefix}create`){
-        if(!message.member.hasPermission('MANAGE_CHANNELS') || !message.guild.me.hasPermission('MANAGE_CHANNELS')) return;
-        let types = ['text', 'voice', 'category']
-        if(!args[1] || !args[2]) return message.channel.send(`**Usage:** ${prefix}create < text | voice | category > [name]`);
-        if(!types.includes(args[1].toLowerCase())) return message.channel.send(`The channel type must be: text, voice or category!`);
-        let ch = await message.guild.createChannel(args.slice(2).join(' '), { type: args[1].toLowerCase() });
-        await message.channel.send(`Sucessfully created **${ch.name}** channel.`);
-    }
-});
+
 
 
 
@@ -76,14 +65,7 @@ bot.on('message', async(message) => {
 
 
 
-bot.on('message' , message => {
-    if(message.author.bot) return;
-    if(message.content.startsWith(prefix + "ping")) {
-   message.channel.send('Pong...').then((msg) => {
-        msg.edit(`\`\`\`javascript\nTime taken: ${msg.createdTimestamp - message.createdTimestamp} ms.\nDiscord API: ${Math.round(bot.ping)} ms.\`\`\``);//حقوق دايموند كودز
-   })
-    }  
-});
+
 
 
 
@@ -93,39 +75,13 @@ bot.on('message' , message => {
 
 
 
-        bot.on('message',message =>{
-            let command = message.content.split(" ")[0];
-            if (command == prefix + "change") {
-            let BOT_OWNERS = ['311584244415594498','547200443399536640','ID']
-            if(!BOT_OWNERS.includes(message.author.id)) return message.channel.send('This command only for the bot owner!')
-            var server = bot.guilds.find(c => c.id === message.content.split(" ")[1]);
-            if(!server) return message.channel.send('**I Can\'t find this server :x:**')
-            let command = message.content.split(" ")[2];
-            if(!command) return message.channel.send(`**Use: \`${prefix}link <ID> <name/ava> <new name/new iconUrl>\`**`)
-            if(command == 'ava') {
-            let args = message.content.split(" ")[3];
-            if(!args) return message.channel.send(`**Please Type the photo link!**`)
-            message.channel.send(new Discord.RichEmbed()
-            .setTitle(`Change the **${server.name}** server Icon to`)
-            .setColor('#36393e').setImage(args)).catch(err =>{message.channel.send(`**:x: The photo link is Unavailable**`)})
-            server.setIcon(args).catch(err =>{
-            if(err == 'DiscordAPIError: Missing Permissions') return message.channel.send(`**:x: I Don't have premission in this server**`)})}
-            if(command == 'name') {
-            let args = message.content.split(" ")[3];
-            if(args.length < 1) return message.channel.send('The name must be more than 2 lengths!')
-            message.channel.send(`Change ${server.id} name. \`from ${server.name} to ${args}\`!`).then(msg =>{
-            server.setName(args,`by ${message.author.tag}`).catch(err =>{
-            if(err == "DiscordAPIError: Missing Permissions") return msg.edit(`**:x: I Don't have premission in this server!**`)
-            })})
-            }
-            }});
 
 
 
 
             bot.on('message',message =>{
                 let command = message.content.split(" ")[0];
-                if (command == prefix + "moreinfo") {
+                if (command == prefix + "serverinfo") {
                 var server = bot.guilds.find(c => c.id === message.content.split(" ")[1]);
                 if(!server) return message.channel.send('**I Can\'t find this server :x:**')
                 message.channel.send(new Discord.RichEmbed()
@@ -215,7 +171,7 @@ bot.on('message' , message => {
                                message.channel.overwritePermissions(message.guild.id, {
                                READ_MESSAGES: false
                    })
-                                message.channel.send('تم اخفاء الشات ! :white_check_mark:  ') ///edit fox
+                                message.channel.send('Chat was hidden') ///edit fox
                    }
                   });
                   
@@ -227,24 +183,13 @@ bot.on('message' , message => {
                                message.channel.overwritePermissions(message.guild.id, {
                                READ_MESSAGES: true
                    })
-                                message.channel.send('تم اضهار الشات ')
+                                message.channel.send('Chat was shown ')
                    }
                   });
 
 
 
 
-                  bot.on('message', message => {
-                    if(message.author.bot) return;
-                    if(message.channel.type == "dm") return;
-                    if(message.content == prefix+"newembed"){
-                        var embed = new Discord.RichEmbed()
-                        .setTitle(`Embed By: ${message.author.username}#${message.author.discriminator}`)
-                        .setColor('RANDOM')
-                        .setDescription('```'+`Malicious. Shop Soon 💣`+'```')
-                        message.channel.send(embed)
-                    }
-                });
 
 
 
@@ -271,8 +216,8 @@ bot.on('message' , message => {
                   bot.on("message", message =>{
                     let args = message.content.split(" ");
                     command = args[0];
-                    if (command === `${prefix}soon`) {
-                        message.channel.send("Malicious. Shop Soon 💣"); 
+                    if (command === `${prefix}Malicious`) {
+                        message.channel.send("My boss is busy"); 
                     }
                 });
                 
