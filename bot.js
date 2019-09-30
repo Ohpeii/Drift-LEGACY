@@ -149,12 +149,8 @@ bot.on("message", message => {
                             let messagecount = parseInt(args[1]);
                             message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
                                                           message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
-                            message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
-                            let m3a4x2 = new Discord.RichEmbed()
-                                                            .setColor("#008000")
-                                .setDescription(":white_check_mark: | Delete " + args[1] + " Message!")
+                            message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(
                                 message.delete("..");
-                                message.channel.sendEmbed(m3a4x2);
                             }
                           }
 });
