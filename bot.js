@@ -136,30 +136,28 @@ bot.on('message', async(message) => {
                 
 
 
-                    bot.on('message', message => {
-                        if (message.content.startsWith(prefix + 'clear')) {
-                          if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(`ماعندك هذا البرمشن[*MANAGE_MESSAGES*] `).catch(console.error);
-                      message.delete()
-                      if(!message.channel.guild) return;
-                      let args = message.content.split(" ").slice(1);
-                      
-                      const messagecount = parseInt(args.join(' '));
-                      
-                      message.channel.fetchMessages({
-                      
-                      limit: messagecount
-                      
-                      }).then(messages => message.channel.bulkDelete(messages));
-                      message.channel.sendMessage("", {embed: {
-                        title: "``Chat deleted``",
-                        color: 0x06DF00,
-                        footer: {
-                        
-                        }
-                        }}).then(msg => {msg.delete(3000)});
-                      };
-                      
-                      });
+bot.on("message", message => {
+            var args = message.content.substring(prefix.length).split(" ");
+            if (message.content.startsWith(prefix + "clear")) {
+            if(message.author.id != "311584244415594498") return;
+ if (!args[1]) {
+                                let m3a4x = new Discord.RichEmbed()
+                                .setDescription("$clear <number>")
+                                .setColor("#0000FF")
+                                message.channel.sendEmbed(m3a4x);
+                            } else {
+                            let messagecount = parseInt(args[1]);
+                            message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
+                                                          message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
+                            message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
+                            let m3a4x2 = new Discord.RichEmbed()
+                                                            .setColor("#008000")
+                                .setDescription(":white_check_mark: | Delete " + args[1] + " Message!")
+                                message.delete("..");
+                                message.channel.sendEmbed(m3a4x2);
+                            }
+                          }
+});
 
 
 
