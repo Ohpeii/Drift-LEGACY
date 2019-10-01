@@ -383,7 +383,7 @@ bot.on('message', async(message) => {
                     if(!{body}) return message.channel.send("I broke! Try again.")
                  
                         let mEmbed = new Discord.RichEmbed()
-                        .setAuthor('Malicious Codes is Back', message.guild.iconURL)
+                        .setAuthor('Malicious is Back', message.guild.iconURL)
                         .setImage(body.url)
                         .setTimestamp()
                  
