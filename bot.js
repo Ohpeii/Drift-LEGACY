@@ -370,7 +370,29 @@ bot.on('message', async(message) => {
 
 
 
-
+                const superagent = require("superagent");
+ 
+                bot.on("message", async message => {
+                var args = message.content.split(" ");
+                if(message.content.startsWith(prefix + "meme")) {
+                 
+                   let msg = await message.channel.send("Meme will be ready soon...")
+                    let  {body} = await superagent
+                    .get('https://meme-api.herokuapp.com/gimme')
+                    console.log(body.url)
+                    if(!{body}) return message.channel.send("I broke! Try again.")
+                 
+                        let mEmbed = new Discord.RichEmbed()
+                        .setAuthor('Malicious Codes is Back', message.guild.iconURL)
+                        .setImage(body.url)
+                        .setTimestamp()
+                 
+                        message.channel.send({embed: mEmbed})
+                        msg.delete();
+                             
+                             }
+                 
+                });
 
 
 
