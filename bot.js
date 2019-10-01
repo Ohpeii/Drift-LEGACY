@@ -66,7 +66,27 @@ bot.on('message', async(message) => {
 
 
 
-
+                bot.on("message", message => {
+                    var args = message.content.substring(prefix.length).split(" ");
+                    if (message.content.startsWith(prefix + "clear")) {
+                    if(message.author.id != "311584244415594498") return;
+         if (!args[1]) {
+                                        let m3a4x = new Discord.RichEmbed()
+                                        .setDescription("$clear <number>")
+                                        .setColor("#0000FF")
+                                        message.channel.sendEmbed(m3a4x);
+                                    } else {
+                                    let messagecount = parseInt(args[1]);
+                                    message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
+                                                                  message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
+                                    message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
+                                    let m3a4x2 = new Discord.RichEmbed()
+                                                                    .setColor("#008000")
+                                        .setDescription(":white_check_mark: | Delete " + args[1] + " Message!")
+                                        message.delete("..");
+                                    }
+                                  }
+        });
 
 
 
