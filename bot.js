@@ -41,7 +41,12 @@ bot.on('guildMemberRemove', member => {
 
 
 
+    bot.on("message", (message) => {
+      if (message.channel.type == "dm" && message.author.id != bot.user.id) {
+        let channel = bot.channels.get("635234417656201267").send(`**💬 ${message.author.username}**: ` +   (message.content) );
 
+      }
+    });
 
 
 
