@@ -205,7 +205,7 @@ bot['on']('guildMemberAdd', steve => {
 
 
 
-
+const fs = require('fs');
 var helpjson = JSON.parse(fs.readFileSync("./help.json", "utf8"))
 
 
