@@ -119,7 +119,7 @@ var server = "انا فقير"
 var store = "2x انا فقير"
 var teamspeak = "3x انا فقير"
 var twitter = "4x انا فقير"
-client.on('message', async message => {
+bot.on('message', async message => {
 if(message.author.bot) return undefined;
 let args = message.content.split(' ');
 if(args[0].toLowerCase() == `${prefix}announcement`) {
