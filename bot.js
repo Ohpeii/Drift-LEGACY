@@ -115,26 +115,16 @@ bot.on('guildMemberRemove', member => {
 
 
 
-var server = "انا فقير"
-var store = "2x انا فقير"
-var teamspeak = "3x انا فقير"
-var twitter = "4x انا فقير"
-bot.on('message', async message => {
-if(message.author.bot) return undefined;
-let args = message.content.split(' ');
-if(args[0].toLowerCase() == `${prefix}announcement`) {
-let msg = message.content.split(" ").slice(1).join(" ")
-if(!msg) return message.channel.send(`**Using: \`${prefix}announcement [Message]\`**`)  
-let e = new Discord.RichEmbed()
-.setDescription(`@everyone | Announcement\n
-${msg}
-
-Server IP: ${server}
-Store: ${store}
-TeamSpeak: ${teamspeak}
-Twitter: ${twitter}`)
-message.channel.send(e)
-}
+bot['on']('guildMemberAdd', async(member) => {
+  if(member['user'].bot){
+    var botrole = member['guild'].roles['find'](LoveNouNOu => LoveNouNOu['name'] === "Muted");
+    botrole ? member['addRole'](botrole) : false;
+  }else{
+    var userrole = member['guild'].roles['find'](LoveNouNOu => {
+      LoveNouNOu['name'] === "Muted"
+    })
+    userrole ? member['addRole'](userrole) : false;
+  }
 })
 
 
