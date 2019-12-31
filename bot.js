@@ -209,7 +209,7 @@ bot['on']('guildMemberAdd', steve => {
 var helpjson = JSON.parse(fs.readFileSync("./help.json", "utf8"))
 
 
-client.on("message", message => {
+bot.on("message", message => {
 if(message.content.startsWith(`${prefix}help`)) {
     if(!helpjson) helpjson = {
         onoff: "on" // اذا ماكان مفعل او مو مفعل بيتفعل تلقائي
