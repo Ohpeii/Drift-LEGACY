@@ -51,7 +51,39 @@ bot.on('guildMemberRemove', member => {
 
 
 
+let { createCanvas, loadImage, registerFont } = require('canvas')
 
+  /**
+  *  Log channel id
+  *  @type {string}
+  */
+  , log = "635231470524432403"
+
+
+bot.on('userUpdate', async ( oldUser, newUser ) => {
+
+  if( oldUser.avatar === newUser.avatar) return undefined;
+  
+  let canvas = createCanvas( 750, 220 )
+  , ctx = canvas.getContext( '2d' )
+
+  , oldAvatar = await loadImage( oldUser.avatarURL )
+  , arrows = await loadImage( "https://cdn.discordapp.com/attachments/645088710697811968/661529868239896617/Untitled-1.png" )
+  , newAvatar = await loadImage( newUser.avatarURL )
+  
+    ctx.drawImage( oldAvatar, 0, 0, 220, 220)
+  
+    ctx.drawImage( arrows, 250, 0, 220, 220 )
+  
+    ctx.drawImage( newAvatar, 500, 0, 220, 220 )
+  
+  bot.channels.get( log ).send(new Discord.RichEmbed()
+                                                .setAuthor( newUser.username, newUser.avatarURL)
+                                                .setDescription(" **It changed ``avatar``**")
+                                                .attachFiles( [{ name: "image.png", attachment: canvas.toBuffer() }] )
+                                                .setImage( "attachment://image.png" )
+                                                .setColor( "#00ffff") )
+})
 
 
 
