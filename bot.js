@@ -115,54 +115,27 @@ bot.on('guildMemberRemove', member => {
 
 
 
-const verifyChannelID = "621321845236563992";//ايدي الروم التفعيل
-const verifyRoleName = "Muted";//اسم الرتبة الي تجي للعضو يوم مايكون مفعل
-const roleName = "Community";//رتبة الي تجيه يوم يفعل نفسه
-bot.on('guildMemberAdd', async(member)=> {
-    var guild = member.guild;
+var server = "انا فقير"
+var store = "2x انا فقير"
+var teamspeak = "3x انا فقير"
+var twitter = "4x انا فقير"
+client.on('message', async message => {
+if(message.author.bot) return undefined;
+let args = message.content.split(' ');
+if(args[0].toLowerCase() == `${prefix}announcement`) {
+let msg = message.content.split(" ").slice(1).join(" ")
+if(!msg) return message.channel.send(`**Using: \`${prefix}announcement [Message]\`**`)  
+let e = new Discord.RichEmbed()
+.setDescription(`@everyone | Announcement\n
+${msg}
 
-    var vchannel=guild.channels.find(r => r.id===verifyChannelID);
-    
-    if(!vchannel)return console.log("I cant find the channel.");
-    
-    var role = guild.roles.find(r => r.name===roleName);
-    
-    if(!role)return console.log("I cant find the role.");
-    
-    var verifyRole = guild.roles.find(r =>r.name===verifyRoleName);
-    
-    if(!verifyRole)return;
-
-    member.addRole(verifyRole);
-    var stevNum = Math.floor(Math.random() * 9000)+1000;
-let number = stevNum;
-    var stevEmbed = new Discord.RichEmbed();
-    stevEmbed
-    .setColor("RED")
-    .setDescription("To verify your self please type these numbers: "+number);
-    const message = await vchannel.send(stevEmbed);
-    vchannel.awaitMessages(stevM => stevM.author.id === member.user.id, {max:1, time: 1000 * 64, errors: ["time"]})
-    .then(collected => {
-        if(collected.first().content.startsWith(number)){
-            member.removeRole(verifyRole);
-            member.addRole(role.id);
-            member.send("**Successfully you have been verified on "+guild.name+"**");
-            message.delete();
-            collected.first().delete();
-        }else{
-            message.delete();
-            collected.first().delete();
-            member.send(`**You have been kicked from ${guild.name} because, You have specifed incorrect verifaction number.**`)
-            member.kick("Incorrect verifaction number specifed.");
-        }
-
-    })
-    .catch(()=> {
-        message.delete();
-            member.send(`**You have been kicked from ${guild.name} because, Verifaction time is out.**`)
-            member.kick("Verifaction time is out.");
-    })
-})//3Mo_Steve the best xD
+Server IP: ${server}
+Store: ${store}
+TeamSpeak: ${teamspeak}
+Twitter: ${twitter}`)
+message.channel.send(e)
+}
+})
 
 
 
