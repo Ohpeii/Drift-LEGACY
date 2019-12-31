@@ -177,6 +177,8 @@ let e = new Discord.RichEmbed()
 UserID; ${user.id} 
 \`\`\``)
 message.channel.send(e)
+ }
+})
 
 
 
