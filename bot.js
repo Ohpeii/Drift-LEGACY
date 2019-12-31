@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const prefix = "$"
+const db = require("quick.db")
  
 const token = 'NjE5MTEwNjM5NjM3NjI2ODg3.XXDeXw.VcbmQgbjaJbUz8X8ExiHOAT3QmY';
  
@@ -114,7 +115,7 @@ bot.on('guildMemberRemove', member => {
 
 
 
-const db = require("quick.db")
+
 const moment = require("moment")
 bot.on("message", async message => {
 if(message.author.bot || message.channel.type === "dm") return undefined;
