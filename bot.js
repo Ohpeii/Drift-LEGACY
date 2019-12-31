@@ -115,7 +115,7 @@ bot.on('guildMemberRemove', member => {
 
 
 
-const verifyChannelID = "659075353158877207";//ايدي الروم التفعيل
+const verifyChannelID = "621321845236563992";//ايدي الروم التفعيل
 const verifyRoleName = "Muted";//اسم الرتبة الي تجي للعضو يوم مايكون مفعل
 const roleName = "Community";//رتبة الي تجيه يوم يفعل نفسه
 bot.on('guildMemberAdd', async(member)=> {
