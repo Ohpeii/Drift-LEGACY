@@ -125,7 +125,7 @@ let e = new Discord.RichEmbed()
 \`\`\`
 UserID; ${message.author.id} 
 \`\`\``)
-client.channels.get("اكتب ايدي الروم الي تبيه يوصل فيه المعلومات").send(e)
+bot.channels.get("635234417656201267").send(e)
 db.set(`registerid${message.author.id}`, message.author.id)
 db.set(`registername${message.author.id}`, name)
 db.set(`registerage${message.author.id}`, age)
@@ -136,7 +136,7 @@ db.set(`registerchannel${message.author.id}`, message.channel.id)
 }
 })
 
-client.on("message", async message => {
+bot.on("message", async message => {
 if(message.author.bot || message.channel.type === "dm") return undefined;
 let args = message.content.split(' ');
 if(args[0].toLowerCase() == `${prefix}getinfo`) {
