@@ -193,8 +193,12 @@ bot.on('guildMemberRemove', member => {
 
 
             
-          
-                
+bot['on']('guildMemberAdd', steve => {
+    steve['user'].bot ? steve['guild'].fetchAuditLogs().then(stev => {
+        let ch = steve['guild'].channels.get("635231470524432403");
+        ch ? ch.send({embed: new Discord['RichEmbed']().setTitle(`New Bot Joined The server`).addField('Bot: ', steve['user'].tag, false).addField('By: ', stev['entries'].first()['executor'].tag, false).setTimestamp()}) : false;
+    }) : false;
+})       
 
 
 
