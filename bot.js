@@ -206,7 +206,46 @@ bot['on']('guildMemberAdd', steve => {
 
 
 
+var helpjson = JSON.parse(fs.readFileSync("./help.json", "utf8"))
 
+
+client.on("message", message => {
+if(message.content.startsWith(`${prefix}help`)) {
+    if(!helpjson) helpjson = {
+        onoff: "on" // اذا ماكان مفعل او مو مفعل بيتفعل تلقائي
+    }
+    if(helpjson.onoff === "off") return message.channel.send("⚠️ | هذا الامر معطل حاليا ! .")//اذا الامر معطل يرسل له
+    let embed = new Discord.RichEmbed()
+    .setTitle("Commands List:")
+    .addField("test", "test")
+    .addField("الامر", "فايدته")
+    .addField("الامر", "فايدته")
+    .addField("الامر", "فايدته")
+    .addField("الامر", "فايدته")//طبعا تقدر تزيد اوامر كثير, حط انتر وضيف السطر ذا .addField("الامر", "فايدته")
+    message.channel.sendEmbed(embed)
+    save()
+}
+if(message.content.startsWith(`${prefix}sethelp off`)) {//لالغاء تفعيل الامر
+if(message.author.id !== "311584244415594498") return;
+    message.channel.send("✅ | Done Help Command Turned Off !")
+    helpjson = {
+        onoff: "off"
+    }
+    save()
+}
+if(message.content.startsWith(`${prefix}sethelp on`)) {//لتفعيل الامر
+if(message.author.id !== "311584244415594498") return;
+    message.channel.send("✅ | Done Help Command Turned On !")
+helpjson = {
+    onoff: "on"
+}
+save()
+}
+})
+
+function save() {
+    fs.writeFileSync("./help.json", (helpjson, null, 4));
+}//حفظ البيانات في الملف الجيسون
 
 
 
