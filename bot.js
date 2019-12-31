@@ -114,7 +114,69 @@ bot.on('guildMemberRemove', member => {
 
 
 
+const db = require("quick.db")
+const moment = require("moment")
+bot.on("message", async message => {
+if(message.author.bot || message.channel.type === "dm") return undefined;
+let args = message.content.split(' ');
+if(args[0].toLowerCase() == `${prefix}register`) {
+db.fetch(`registerid${message.author.id}`)
+db.fetch(`registername${message.author.id}`)
+db.fetch(`registerage${message.author.id}`)
+db.fetch(`registercountry${message.author.id}`)
+db.fetch(`registercode${message.author.id}`)
+db.fetch(`registerdata${message.author.id}`)
+db.fetch(`registerchannel${message.author.id}`)
+let name = message.content.split(" ")[1];
+let age = message.content.split(" ")[2];
+let country = message.content.split(" ")[3];
+if(db.fetch(`registerid${message.author.id}`) === null || db.fetch(`registername${message.author.id}`) === null || db.fetch(`registerage${message.author.id}`) === null || db.fetch(`registercountry${message.author.id}`) === null || db.fetch(`registercode${message.author.id}`) || db.fetch(`registerdata${message.author.id}`) === null || db.fetch(`registerchannel${message.author.id}`) === null) return undefined;
+if(!name || !age || !country) return message.channel.send(`**💡 | Using: \`\`${prefix}register <name> <age> <country>\`\`**`)
+let ss = Math.floor((Math.random() * 1000) + 1);
+message.channel.send(`**✅ | Done**`)
+let e = new Discord.RichEmbed()
+.setAuthor(message.author.tag)
+.setThumbnail(message.author.avatarURL)
+.setDescription(`✨ | ${message.author}
+**Name;** ${name}
+**Age;** ${age}
+**Country;** ${country}
+**Date;** ${moment().format('llll')}
+**Registration in;** ${message.channel}
+**Code;** ${ss}
+\`\`\`
+UserID; ${message.author.id} 
+\`\`\``)
+bot.channels.get("635234417656201267").send(e)
+db.set(`registerid${message.author.id}`, message.author.id)
+db.set(`registername${message.author.id}`, name)
+db.set(`registerage${message.author.id}`, age)
+db.set(`registercountry${message.author.id}`, country)
+db.set(`registercode${message.author.id}`, ss)
+db.set(`registerdata${message.author.id}`, moment().format('llll'))
+db.set(`registerchannel${message.author.id}`, message.channel.id)
+}
+})
 
+bot.on("message", async message => {
+if(message.author.bot || message.channel.type === "dm") return undefined;
+let args = message.content.split(' ');
+if(args[0].toLowerCase() == `${prefix}getinfo`) {
+let user = message.mentions.users.first()
+let e = new Discord.RichEmbed()
+.setAuthor(user.tag)
+.setThumbnail(user.avatarURL)
+.setDescription(`✨ | ${user}
+**Name;** ${db.fetch(`registerid${user.id}`)}
+**Age;** ${db.fetch(`registerage${user.id}`)}
+**Country;** ${db.fetch(`registercountry${user.id}`)}
+**Date;** ${db.fetch(`registerdata${user.id}`)}
+**Registration in;** <#${db.fetch(`registerchannel${user.id}`)}>
+**Code;** ${db.fetch(`registercode${user.id}`)}
+\`\`\`
+UserID; ${user.id} 
+\`\`\``)
+message.channel.send(e)
 
 
 
