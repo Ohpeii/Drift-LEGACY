@@ -14,7 +14,9 @@ bot.on('ready', () =>{
     `)
 })
  
- 
+ bot.user.setActivity('Boost us', { type: 'Playing' })
+  .then(presence => console.log(`Activity set to ${presence.game ? presence.game.name : 'none'}`))
+  .catch(console.error);
  
 
             bot.on('guildMemberAdd', member => {
