@@ -25,7 +25,7 @@ bot.on('guildMemberAdd', member => {
 
 
 bot.on('guildMemberRemove', member => {
-    member.guild.channels.get('635227990342500363').send(`<@${member.user.id}> has left the server`);
+    member.guild.channels.get('663051893760720918').send(`<@${member.user.id}> has left the server`);
 });
  
 
