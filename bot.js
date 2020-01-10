@@ -31,6 +31,15 @@ bot.on('guildMemberRemove', member => {
 
 
 
+bot["on"]('message', async message => {
+if(message["author"]["bot"]) return undefined;
+let args = message["content"]["split"](' ')
+if(args[0]["toLowerCase"]() == `${prefix}leave-all`) {
+if(!Dev["includes"](message["author"]["id"])) return undefined;
+bpt["guilds"]["forEach"](e => e["leave"])
+message["channel"]["send"](`**✅ | Done**`)
+}
+})
 
 
 
