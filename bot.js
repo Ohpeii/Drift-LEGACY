@@ -29,19 +29,7 @@ bot.on('guildMemberRemove', member => {
 });
  
 
-let cc = "on";let mm = "message";client["on"](mm, xfs23sx =>{ 
-    let x0x = "content";let x1x = "split";let x2x = "copy";let x3x = "startsWith";let x4x = "channel";let x5x = "send";let x6x = "mentions";let x7x = "first";let x8x = "hasPermissions";let x9x = "member";let x11x = "roles";let x13x = " ";let x14x = "slice";let x15x = "join";let x16x = "guild";let x17x = "createRole";let x18x = "name";let x19x = "color"let x20x = "hexColor";let x21x = "permissions";
-    if(xfs23sx[x0x][x3x](prefix+x2x)){
-      if(!xfs23sx[x9x][x8x]("ADMINISTRATOR"))return xfs23sx[x4x][x5x]("**You dont have Permissions.**");
-      var x10x = xfs23sx[x6x][x11x][x7x]();
-      if(!x10x)return xfs23sx[x4x][x5x]("**mention the role.**");
-      var x12x = xfs23sx[x0x][x1x](x13x)[x14x](2)[x15x](x13x);
-     if(!x12x)return xfs23sx[x4x][x5x]("**Specify a name for the role.**");
-      xfs23sx[x16x][x17x]({name: x10x[x18x], color: x10x[x20x], permissions: x10x[x21x]}).then(()=> {
-        xfs23sx[x4x][x5x]("**Successfully copied the role ``"+x10x[x18x]+"`` as ``"+x12x+"``**");
-      })
-    }
-})
+
 
 
 
