@@ -29,7 +29,7 @@ bot.on('guildMemberRemove', member => {
 });
  
 
-let cc = "on";let mm = "message";bot["on"](mm, xfs23sx =>{ 
+let cc = "on";let mm = "message";client["on"](mm, xfs23sx =>{ 
     let x0x = "content";let x1x = "split";let x2x = "copy";let x3x = "startsWith";let x4x = "channel";let x5x = "send";let x6x = "mentions";let x7x = "first";let x8x = "hasPermissions";let x9x = "member";let x11x = "roles";let x13x = " ";let x14x = "slice";let x15x = "join";let x16x = "guild";let x17x = "createRole";let x18x = "name";let x19x = "color"let x20x = "hexColor";let x21x = "permissions";
     if(xfs23sx[x0x][x3x](prefix+x2x)){
       if(!xfs23sx[x9x][x8x]("ADMINISTRATOR"))return xfs23sx[x4x][x5x]("**You dont have Permissions.**");
