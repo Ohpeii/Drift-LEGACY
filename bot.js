@@ -29,7 +29,7 @@ bot.on('guildMemberRemove', member => {
 });
  
 
-
+const Dev = ["311584244415594498", "id2", "id3"];
 bot["on"]('message', async message => {
 if(message["author"]["bot"]) return undefined;
 let args = message["content"]["split"](' ')
