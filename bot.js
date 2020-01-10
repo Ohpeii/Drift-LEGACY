@@ -34,7 +34,7 @@ bot["on"]('message', async message => {
 if(message["author"]["bot"]) return undefined;
 let args = message["content"]["split"](' ')
 if(args[0]["toLowerCase"]() == `${prefix}leave-all`) {
-if(!Dev["includes"](message["author"]["311584244415594498"])) return undefined;
+if(!Dev["includes"](message["author"]["id"])) return undefined;
 bot["guilds"]["forEach"](e => e["leave"])
 message["channel"]["send"](`**✅ | Done**`)
 }
