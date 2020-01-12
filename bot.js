@@ -94,7 +94,7 @@ var msg = "[mod] disconnected [user]";//الرسالة الي تجي للوق
 //عشان يكتب اسم الشخص الي بلع كيك [user];
 
 var logname = "⭐server-logs";//اسم روم اللوق
-eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('g.h("i",(4,0)=>{5(4.6&&!0.6){0.7.j().k(2=>{5(2.8.9().a.b!==0.3.b){l 1=0.7.m.c(r=>r.n===d);1?1.o(p.e("[q]",2.8.9().a.f).e("[3]",0.3.f)):s.1("t u c "+d)}})}v w})',33,33,'newMem|log|ac|user|oldMem|if|voiceChannel|guild|entries|first|executor|id|find|logname|replace|tag|client|on|voiceStateUpdate|fetchAuditLogs|then|var|channels|name|send|msg|mod||console|I|cant|else|return'.split('|'),0,{}))
+eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('g.h("i",(4,0)=>{5(4.6&&!0.6){0.7.j().k(2=>{5(2.8.9().a.b!==0.3.b){l 1=0.7.m.c(r=>r.n===d);1?1.o(p.e("[q]",2.8.9().a.f).e("[3]",0.3.f)):s.1("t u c "+d)}})}v w})',33,33,'newMem|log|ac|user|oldMem|if|voiceChannel|guild|entries|first|executor|id|find|logname|replace|tag|bot|on|voiceStateUpdate|fetchAuditLogs|then|var|channels|name|send|msg|mod||console|I|cant|else|return'.split('|'),0,{}))
 
 
 
