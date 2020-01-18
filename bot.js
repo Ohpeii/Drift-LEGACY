@@ -107,6 +107,8 @@ bot.on("message", async function (message) {
     if (!ownerID) {
         var ownerID = "311584244415594498"
     }
+    if (!prefix) {
+        var prefix = ";";
     }
     if (message.author.id !== ownerID || !message.content.startsWith(prefix)) return undefined;
     var args = message.content.slice(prefix.length).split(" ");
