@@ -103,29 +103,7 @@ eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^
 
 
 
-bot.on("message", async function (message) {
-    if (!ownerID) {
-        var ownerID = "311584244415594498"
-    }
 
-    if (message.author.id !== ownerID || !message.content.startsWith(prefix)) return undefined;
-    var args = message.content.slice(prefix.length).split(" ");
-    var command = args[0];
-    switch (command) {
-        case "servers":
-        bot.guilds.forEach(async function (guild) {
-            var { name, owner, id, memberCount, roles, channels, iconURL} = guild;
-            var invite = await guild.channels.filter(channel => channel.type == "text" || channel.type == "voice").first();
-            var embed = new Discord.RichEmbed()
-            .setDescription(`ServerName - ${name}\nserverOwner - <@${owner.user.id}>\nServerID - ${id}\nMember - ${memberCount}\nRoles - ${roles.size}\nChannels - ${channels.size}\nInviteLink - [Invite](${invite})`)
-            .setTimestamp();
-            if (iconURL) {
-                embed.setThumbnail(iconURL);
-            }
-        });
-        break;
-    }
-});
 
 
 
