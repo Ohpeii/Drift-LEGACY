@@ -32,7 +32,7 @@ bot.on('guildMemberRemove', member => {
 
 
 
-var ChannelName = "welcome-steve";//اسم الروم
+var ChannelName = "▪》welcome";//اسم الروم
 var imageURL = "http://i8.ae/sw4p9";//رابط الصورة
 
 
