@@ -32,7 +32,19 @@ bot.on('guildMemberRemove', member => {
 
 
 
-
+ bot.on("message",async message => {
+   if(message.content.startsWith(`${prefix}gif`)) {
+  if (message.channel.nsfw === true) {
+    superagent.get('https://nekobot.xyz/api/image')
+    .query({ type: 'pgif'})
+    .end((err, response) => {
+      message.channel.send({ file: response.body.message });
+    });
+  } else {
+    message.channel.send("This Channel Not Nsfw!")
+  }
+}
+});
 
 
 
