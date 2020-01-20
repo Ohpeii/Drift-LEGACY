@@ -52,49 +52,6 @@ var _0x1201=['0x51','0x25','0x28','0x36','0x26','name','0x30','welcome-steve.png
 
 
 
-/*
- كود يخفي الرومات عن الجميع 
-prefix+hideAll
-
-وتقدر تحدد اشخاص تقدر تشوف الرومات
-prefix+showAll <mention>
-
-او تخلي الكل تشوف الرومات
-prefix+showAll all
-
-*/
-
-
-bot.on("message", message => {
-  if(!message.guild || message.author.bot)return;
-  if(message.content.startsWith(prefix+"hideAll")){
-    message.guild.channels.forEach(channel => {
-        channel.overwritePermissions(message.guild.id, {
-          READ_MESSAGES: false
-        });
-
-    })
-    message.channel.send("**Successfully**");
-  }else if(message.content.startsWith(prefix+"showAll")){
-    var arg =message.content.split(" ")[1];
-    if(arg && arg == "all"){
-      message.guild.channels.forEach(channel => {
-        channel.overwritePermissions(message.guild.id, {
-          READ_MESSAGES: true
-        });
-      })
-    }else{
-    var member = message.mentions.members.first();
-    if(!member)return message.channel.send("**Mention a member.**");
-message.guild.channels.forEach(channel => {
-        channel.overwritePermissions(member.id, {
-          READ_MESSAGES: true
-        });
-    })
-    message.channel.send("**Successfully**")
-    }
-  }
-})//3Mo_Steve is the best & n3k4a is one
 
 
 
