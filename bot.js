@@ -48,7 +48,52 @@ var _0x1201=['0x51','0x25','0x28','0x36','0x26','name','0x30','welcome-steve.png
 
 
 
+var Enmap = require("enmap")
+var db = new Enmap({name: "fireking"})
+bot["on"]("message", message => {
+db["ensure"]("Partners", {servers: []})
+if(message["author"]["bot"]) return undefined;
+let args = message["content"]["split"](" ");
+if(args[0]["toLowerCase"]() == prefix + "add-partner") {
+let link = message["content"]["split"](" ")["slice"](2)["join"](" ");
+let user = message["mentions"]["members"]["first"]();
+if(!link || !user) return message["channel"]["send"](`**✅ | Using: \`\`${prefix}add-partner [MentionUser] [ServerLink]\`\`**`)
+db["pushIn"]("Partners", "servers" , link)
+let role = message["guild"]["roles"]["find"](e => e.name === "Partner")
+if(!role) return message["channel"]["send"](`**✅ | Please Create Role With Name: \`\`Partner\`\`**`)
+role = role["id"]
+message["guild"]["member"](user)["addRole"](role)
+message["channel"]["send"](`**✅ | Done**`)
+}
+})
 
+bot["on"]("message", message => {
+db["ensure"]("Partners", {servers: []})
+if(message["author"]["bot"]) return undefined;
+let args = message["content"]["split"](" ");
+if(args[0]["toLowerCase"]() == prefix + "remove-partner") {
+let link = message["content"]["split"](" ")["slice"](2)["join"](" ");
+let user = message["mentions"]["members"]["first"]();
+if(!link || !user) return message["channel"]["send"](`**✅ | Using: \`\`${prefix}remove-partner [MentionUser] [ServerLink]\`\`**`)
+if(!db["get"]("Partners", "servers")["includes"](link)) return message["channel"]["send"](`**✅ | I can't find this partner link**`)
+db["removeFrom"]("Partners", "servers" , link)
+let role = message["guild"]["roles"]["find"](e => e.name === "Partner")
+if(!role) return message["channel"]["send"](`**✅ | Please Create Role With Name: \`\`Partner\`\`**`)
+role = role["id"]
+message["guild"]["member"](user)["removeRole"](role)
+message["channel"]["send"](`**✅ | Done**`)
+}
+})
+
+bot["on"]("message", message => {
+db["ensure"]("Partners", {servers: []})
+if(message["author"]["bot"]) return undefined;
+let args = message["content"]["split"](" ");
+if(args[0]["toLowerCase"]() == prefix + "partner-list") {
+let p = db["get"]("Partners", "servers")["join"]("\n")
+message["channel"]["send"](`**${p || "no partner"}**`)
+}
+})
 
 
 
