@@ -48,56 +48,39 @@ var _0x1201=['0x51','0x25','0x28','0x36','0x26','name','0x30','welcome-steve.png
 
 
 
-var Enmap = require("enmap")
-var db = new Enmap({name: "fireking"})
-bot["on"]("message", message => {
-db["ensure"]("Partners", {servers: []})
-if(message["author"]["bot"]) return undefined;
-let args = message["content"]["split"](" ");
-if(args[0]["toLowerCase"]() == prefix + "add-partner") {
-let link = message["content"]["split"](" ")["slice"](2)["join"](" ");
-let user = message["mentions"]["members"]["first"]();
-if(!link || !user) return message["channel"]["send"](`**✅ | Using: \`\`${prefix}add-partner [MentionUser] [ServerLink]\`\`**`)
-db["pushIn"]("Partners", "servers" , link)
-let role = message["guild"]["roles"]["find"](e => e.name === "Partner")
-if(!role) return message["channel"]["send"](`**✅ | Please Create Role With Name: \`\`Partner\`\`**`)
-role = role["id"]
-message["guild"]["member"](user)["addRole"](role)
-message["channel"]["send"](`**✅ | Done**`)
-}
-})
-
-bot["on"]("message", message => {
-db["ensure"]("Partners", {servers: []})
-if(message["author"]["bot"]) return undefined;
-let args = message["content"]["split"](" ");
-if(args[0]["toLowerCase"]() == prefix + "remove-partner") {
-let link = message["content"]["split"](" ")["slice"](2)["join"](" ");
-let user = message["mentions"]["members"]["first"]();
-if(!link || !user) return message["channel"]["send"](`**✅ | Using: \`\`${prefix}remove-partner [MentionUser] [ServerLink]\`\`**`)
-if(!db["get"]("Partners", "servers")["includes"](link)) return message["channel"]["send"](`**✅ | I can't find this partner link**`)
-db["removeFrom"]("Partners", "servers" , link)
-let role = message["guild"]["roles"]["find"](e => e.name === "Partner")
-if(!role) return message["channel"]["send"](`**✅ | Please Create Role With Name: \`\`Partner\`\`**`)
-role = role["id"]
-message["guild"]["member"](user)["removeRole"](role)
-message["channel"]["send"](`**✅ | Done**`)
-}
-})
-
-bot["on"]("message", message => {
-db["ensure"]("Partners", {servers: []})
-if(message["author"]["bot"]) return undefined;
-let args = message["content"]["split"](" ");
-if(args[0]["toLowerCase"]() == prefix + "partner-list") {
-let p = db["get"]("Partners", "servers")["join"]("\n")
-message["channel"]["send"](`**${p || "no partner"}**`)
-}
-})
 
 
 
 
+bot.on("message", async m =>{
+  if(m.author.bot || !m.guild) return;
+  var args = m.content.split(" ");
+  var command = args[0].slice(prefix.length);
+  if(!m.content.startsWith(prefix)) return;
+  var all = ["-"]
+  switch (command) {
+    case 'drake':
+      if(!args[1] && !args[2]) return m.channel.send(new Discord.RichEmbed().setDescription(`<a:no:651123754558291988> Usage \`${prefix}drake <bad> <good>\``));
+      if(!args[2]) return m.channel.send(new Discord.RichEmbed().setDescription("<a:no:651123754558291988> Unable to resolve the ``good`` argument."));
+      let canvas = Canvas.createCanvas(299, 291);
+      const applybad = (canvas, text) => {const ctx = canvas.getContext("2d");let fontSize = 40;do {ctx.font = `${(fontSize -= 5)}px Comic SANS`;}while(ctx.measureText(text).width > canvas.width - 150);return ctx.font;};
+      const applygood = (canvas, text) => {const ctx = canvas.getContext("2d");let fontSize = 40;do {ctx.font = `${(fontSize -= 5)}px Comic SANS`;}while(ctx.measureText(text).width > canvas.width - 150);return ctx.font;};
+      let ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#000000";
+      ctx.textAlign = "center";
+      const background = await Canvas.loadImage("https://cdn.discordapp.com/attachments/662049225944596512/667320767565922304/Drakeposting.jpg");
+      ctx.drawImage(background, 0, 0, canvas.width, canvas.height);  
+      ///////////////////////////////////bad//////////////////////////////
+      ctx.font = applybad(canvas,args[1].split("-").join(" "));
+      ctx.fillText(args[1].split("-").join(" "), 225, 80.8333333333);
+      ////////////////////////////good///////////////////
+      ctx.font = applygood(canvas,args[2].split("-").join(" "));
+      ctx.fillText(args[2].split("-").join(" "), 225, 225);
+      const attachment = new Discord.Attachment(canvas.toBuffer());
+      m.channel.send(attachment);
+      break
+  }
+});
 
 
 
