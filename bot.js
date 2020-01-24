@@ -51,6 +51,37 @@ var _0x1201=['0x51','0x25','0x28','0x36','0x26','name','0x30','welcome-steve.png
 
 
 
+
+
+bot.on('message', async message => {
+let args = message.content.slice(prefix.length).trim().split(/ +/g);
+let command = args.shift().toLocaleLowerCase();
+if(command === "get") {
+ const regex = /\d{17,19}/g;
+var emojiID = regex.exec(args[0])[0];
+message.channel.send(emojiID)
+}
+});
+bot["on"]('message', message => {
+if(message["author"]["bot"]) return undefined;
+let args = message["content"]["split"](" ");
+if(args[0]["toLowerCase"]() == prefix + `allbots`) {
+var n = 1;
+let e = new Discord.RichEmbed()
+.setAuthor(message["author"]["username"],message["author"]["avatarURL"])
+.setColor("BLACK")
+.setDescription(`**Found ${message["guild"]["members"]["filter"](e => e["user"]["bot"])["size"] || "0"} bots in this Server**
+${message["guild"]["members"]["filter"](e => e["user"]["bot"])["map"](e => `${n++} ${e.user}` || "No Bots")["join"]("\n")}`)
+.setFooter(bot["user"]["username"],bot["user"]["avatarURL"])
+.setTimestamp()
+message["channel"]["send"](e)
+}
+})
+
+
+
+
+
 bot.on("message", async message => {
   
   if (message.content.toLowerCase() === prefix + "profile") {
