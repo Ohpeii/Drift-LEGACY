@@ -53,15 +53,7 @@ var _0x1201=['0x51','0x25','0x28','0x36','0x26','name','0x30','welcome-steve.png
 
 
 
-bot.on('message', async message => {
-let args = message.content.slice(prefix.length).trim().split(/ +/g);
-let command = args.shift().toLocaleLowerCase();
-if(command === "get") {
- const regex = /\d{17,19}/g;
-var emojiID = regex.exec(args[0])[0];
-message.channel.send(emojiID)
-}
-});
+
 bot["on"]('message', message => {
 if(message["author"]["bot"]) return undefined;
 let args = message["content"]["split"](" ");
@@ -193,12 +185,6 @@ bot.on('userUpdate', async ( oldUser, newUser ) => {
 
 
 
-var msg = "[mod] disconnected [user]";//الرسالة الي تجي للوق
-//عشان يكتب اسم الي سوا كيك [mod]
-//عشان يكتب اسم الشخص الي بلع كيك [user];
-
-var logname = "⭐server-logs";//اسم روم اللوق
-eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('g.h("i",(4,0)=>{5(4.6&&!0.6){0.7.j().k(2=>{5(2.8.9().a.b!==0.3.b){l 1=0.7.m.c(r=>r.n===d);1?1.o(p.e("[q]",2.8.9().a.f).e("[3]",0.3.f)):s.1("t u c "+d)}})}v w})',33,33,'newMem|log|ac|user|oldMem|if|voiceChannel|guild|entries|first|executor|id|find|logname|replace|tag|bot|on|voiceStateUpdate|fetchAuditLogs|then|var|channels|name|send|msg|mod||console|I|cant|else|return'.split('|'),0,{}))
 
 
 
@@ -333,59 +319,14 @@ eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^
 
 
             
-bot['on']('guildMemberAdd', steve => {
-    steve['user'].bot ? steve['guild'].fetchAuditLogs().then(stev => {
-        let ch = steve['guild'].channels.get("635231470524432403");
-        ch ? ch.send({embed: new Discord['RichEmbed']().setTitle(`New Bot Joined The server`).addField('Bot: ', steve['user'].tag, false).addField('By: ', stev['entries'].first()['executor'].tag, false).setTimestamp()}) : false;
-    }) : false;
-})       
+       
 
 
 
 
 
 
-const fs = require('fs');
-var helpjson = JSON.parse(fs.readFileSync("./help.json", "utf8"))
 
-
-bot.on("message", message => {
-if(message.content.startsWith(`${prefix}help`)) {
-    if(!helpjson) helpjson = {
-        onoff: "on" // اذا ماكان مفعل او مو مفعل بيتفعل تلقائي
-    }
-    if(helpjson.onoff === "off") return message.channel.send("⚠️ | هذا الامر معطل حاليا ! .")//اذا الامر معطل يرسل له
-    let embed = new Discord.RichEmbed()
-    .setTitle("Commands List:")
-    .addField("test", "test")
-    .addField("الامر", "فايدته")
-    .addField("الامر", "فايدته")
-    .addField("الامر", "فايدته")
-    .addField("الامر", "فايدته")//طبعا تقدر تزيد اوامر كثير, حط انتر وضيف السطر ذا .addField("الامر", "فايدته")
-    message.channel.sendEmbed(embed)
-    save()
-}
-if(message.content.startsWith(`${prefix}sethelp off`)) {//لالغاء تفعيل الامر
-if(message.author.id !== "311584244415594498") return;
-    message.channel.send("✅ | Done Help Command Turned Off !")
-    helpjson = {
-        onoff: "off"
-    }
-    save()
-}
-if(message.content.startsWith(`${prefix}sethelp on`)) {//لتفعيل الامر
-if(message.author.id !== "311584244415594498") return;
-    message.channel.send("✅ | Done Help Command Turned On !")
-helpjson = {
-    onoff: "on"
-}
-save()
-}
-})
-
-function save() {
-    fs.writeFileSync("./help.json", (helpjson, null, 4));
-}//حفظ البيانات في الملف الجيسون
 
 
 
