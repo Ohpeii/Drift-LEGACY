@@ -109,7 +109,7 @@ https://discord.gg/s7VkhT2
 
 const credits = JSON.parse(fs.readFileSync("./credits.json"));
 var time = require("./time.json");
-client.on("message", async message => {
+bot.on("message", async message => {
   if (message.author.bot || message.channel.type === "dm") return;
   let args = message.content.split(" ");
   let author = message.author.id;
