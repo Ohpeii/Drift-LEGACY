@@ -111,52 +111,49 @@ bot.on("message", async message => {
 
 
 
-if(cmd === `${prefix}translate`){
-    const translate = require('google-translate-api');
-    const Langs = ['afrikaans','albanian','amharic','arabic','armenian','azerbaijani','bangla','basque','belarusian','bengali','bosnian','bulgarian','burmese','catalan','cebuano','chichewa','chinese simplified','chinese traditional','corsican','croatian','czech','danish','dutch','english','esperanto','estonian','filipino','finnish','french','frisian','galician','georgian','german','greek','gujarati','haitian creole','hausa','hawaiian','hebrew','hindi','hmong','hungarian','icelandic','igbo','indonesian','irish','italian','japanese','javanese','kannada','kazakh','khmer','korean','kurdish (kurmanji)','kyrgyz','lao','latin','latvian','lithuanian','luxembourgish','macedonian','malagasy','malay','malayalam','maltese','maori','marathi','mongolian','myanmar (burmese)','nepali','norwegian','nyanja','pashto','persian','polish','portugese','punjabi','romanian','russian','samoan','scottish gaelic','serbian','sesotho','shona','sindhi','sinhala','slovak','slovenian','somali','spanish','sundanese','swahili','swedish','tajik','tamil','telugu','thai','turkish','ukrainian','urdu','uzbek','vietnamese','welsh','xhosa','yiddish','yoruba','zulu'];
+client.on('message', message => {
+    if (message.content.startsWith("$tr")) {
+     
+        const translate = require('google-translate-api');
+       
  
-    if (args[0] === undefined) {
+    let toTrans = message.content.split(' ').slice(1);
+    let language;
  
-      const translatelanguageembed = new Discord.RichEmbed()
-      .setColor("FFFFFF")
-      .setDescription(`**Provide a language and some text for bot to translate.**\nUsage: ${prefix}translate <language> <text>`);
- 
-      return message.channel.send(translatelanguageembed);
- 
-    } else {
- 
-      if (args[1] === undefined) {
- 
-        const translatetextembed = new Discord.RichEmbed()
-        .setColor("FFFFFF")
-        .setDescription(`**Please give me something to translate.** ${prefix}translate <language> <text>`)
- 
-        return message.channel.send(translatetextembed);
- 
-      } else {
- 
-        let transArg = args[0].toLowerCase();
- 
-        args = args.join(' ').slice(prefix.length);
-        let translation;
- 
-        if (!Langs.includes(transArg)) return message.channel.send(`**Language not found.**`);
-        args = args.slice(transArg.length);
- 
-        translate(args, {to: transArg}).then(res => {
- 
-          const embed = new Discord.RichEmbed()
-          .setDescription(res.text)
-          .setFooter(`english -> ${transArg}`)
-          .setColor("#4286f4");
-          return message.channel.send(embed);
- 
-        });
- 
-      }
- 
+    language = toTrans[toTrans.length - 2] === 'to' ? toTrans.slice(toTrans.length - 2, toTrans.length)[1].trim() : undefined;
+    if (!language) {
+        return message.reply(`Please supply valid agruments.\n**Example** \`-translate [text] to [language]\``);
     }
-  };
+    let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
+    translate(finalToTrans, {to: language}).then(res => {
+            message.channel.send({embed: {
+                color: 3447003,
+                author: {
+                  name: 'S Bot\'s translator',
+                  icon_url: client.user.avatarURL
+                },
+                fields: [{
+                    name: "Translator",
+                    value: `**From:** ${res.from.language.iso}\n\`\`\`${finalToTrans}\`\`\`\n**To: **${language}\n\`\`\`${res.text}\`\`\``
+                  }
+                ],
+                timestamp: new Date(),
+                footer: {
+                  icon_url: client.user.avatarURL,
+                  text: "S Bot"
+                }
+              }
+            });
+    }).catch(err => {
+        message.channel.send({
+            embed: {
+                description: '❌ We could not find the supplied language.',
+                color: 0xE8642B
+            }
+        });
+    });
+    }
+});
 
 
 
