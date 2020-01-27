@@ -111,7 +111,7 @@ bot.on("message", async message => {
 
 
 
-client.on('message', message => {
+bot.on('message', message => {
     if (message.content.startsWith("$tr")) {
      
         const translate = require('google-translate-api');
@@ -130,7 +130,7 @@ client.on('message', message => {
                 color: 3447003,
                 author: {
                   name: 'S Bot\'s translator',
-                  icon_url: client.user.avatarURL
+                  icon_url: bot.user.avatarURL
                 },
                 fields: [{
                     name: "Translator",
@@ -139,7 +139,7 @@ client.on('message', message => {
                 ],
                 timestamp: new Date(),
                 footer: {
-                  icon_url: client.user.avatarURL,
+                  icon_url: bot.user.avatarURL,
                   text: "S Bot"
                 }
               }
