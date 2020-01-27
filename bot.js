@@ -113,7 +113,7 @@ bot.on("message", async message => {
 
 const translate = require('google-translate-api');
 
-if (command === "translate") {
+if (cmd === "translate") {
     if (args[0]) {
         let from_language = "auto" // default languages
         let to_language = "en" // default languages
