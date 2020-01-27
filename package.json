@@ -15,6 +15,7 @@
     "weather": "^1.0.4",
     "canvas": "^2.6.1",
     "enmap": "^5.2.4",
+    "google-translate-api": "2.3.0",
     "quick.db": "^7.0.0-b22",
     "weather.js": "^0.1.0"
   }
