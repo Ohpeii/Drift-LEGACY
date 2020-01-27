@@ -111,51 +111,52 @@ bot.on("message", async message => {
 
 
 
-const translate = require('google-translate-api');
-
-if (cmd === "translate") {
-    if (args[0]) {
-        let from_language = "auto" // default languages
-        let to_language = "en" // default languages
-        let tobe_translated = message.content.slice(prefix.length + command.length + 1) // Getting the text
-        if (args[0].startsWith("from:")) { // Checking if there is a from:language & to:language, this part is not optimized
-            from_language = args[0].slice(5)
-            tobe_translated = tobe_translated.slice(args[0].length + 1)
-            if (args[1].startsWith("to:")) {
-                to_language = args[1].slice(3)
-                tobe_translated = tobe_translated.slice(args[1].length + 1) // cutting the from & to from the text
-            }
-        } else if (args[0].startsWith("to:")) { // Checking if there is a to:language & from:language, Yes I check 2 times :/
-            to_language = args[0].slice(3)
-            tobe_translated = tobe_translated.slice(args[0].length + 1)
-            if (args[1].startsWith("from:")) {
-                from_language = args[1].slice(5)
-                tobe_translated = tobe_translated.slice(args[1].length + 1) // cutting the from & to from the text
-            }
-        }
-        translate(tobe_translated, {
-            from: from_language,
-            to: to_language
-        }).then(res => { // We translate the text
-            from_language = res.from.language.iso
-            if (res.from.text.value) tobe_translated = res.from.text.value
-            final_text = res.text
-            let translateembed = new Discord.RichEmbed()
-                .setTitle("Translate") // Optionnal stuff
-                .setColor(`0x3980b3`) // Optionnal stuff
-                .setDescription("Bip Bip Boop\nThe internet magic is here") // Optionnal stuff
-                .addField("`from: " + from_language + "`", "```" + tobe_translated + "```")
-                .addField("`to: " + to_language + "`", "```" + final_text + "```")
-                .setThumbnail("https://cdn.dribbble.com/users/1341307/screenshots/3641494/google_translate.gif") // Optionnal stuff
-            message.channel.send(translateembed)
-        }).catch(err => {
-            message.channel.send(":x: Usage: `" + prefix + "translate [from:iso] [to:iso] <some text>` \nThe from: and to: are optional, you can check out <http://bit.ly/ISO_codesWiki> for the iso codes\nExample: ```" + prefix + "translate from:ro to:fr Salut, ce mai faci?```") // Yes, I used Romanian for my example. Do you have any problem?
-        });
+if(cmd === `${prefix}translate`){
+    const translate = require('google-translate-api');
+    const Langs = ['afrikaans','albanian','amharic','arabic','armenian','azerbaijani','bangla','basque','belarusian','bengali','bosnian','bulgarian','burmese','catalan','cebuano','chichewa','chinese simplified','chinese traditional','corsican','croatian','czech','danish','dutch','english','esperanto','estonian','filipino','finnish','french','frisian','galician','georgian','german','greek','gujarati','haitian creole','hausa','hawaiian','hebrew','hindi','hmong','hungarian','icelandic','igbo','indonesian','irish','italian','japanese','javanese','kannada','kazakh','khmer','korean','kurdish (kurmanji)','kyrgyz','lao','latin','latvian','lithuanian','luxembourgish','macedonian','malagasy','malay','malayalam','maltese','maori','marathi','mongolian','myanmar (burmese)','nepali','norwegian','nyanja','pashto','persian','polish','portugese','punjabi','romanian','russian','samoan','scottish gaelic','serbian','sesotho','shona','sindhi','sinhala','slovak','slovenian','somali','spanish','sundanese','swahili','swedish','tajik','tamil','telugu','thai','turkish','ukrainian','urdu','uzbek','vietnamese','welsh','xhosa','yiddish','yoruba','zulu'];
+ 
+    if (args[0] === undefined) {
+ 
+      const translatelanguageembed = new Discord.RichEmbed()
+      .setColor("FFFFFF")
+      .setDescription(`**Provide a language and some text for bot to translate.**\nUsage: ${prefix}translate <language> <text>`);
+ 
+      return message.channel.send(translatelanguageembed);
+ 
     } else {
-        message.channel.send(":x: Usage: `" + prefix + "translate [from:iso] [to:iso] <some text>` \nThe from: and to: are optional, you can check out <http://bit.ly/ISO_codesWiki> for the iso codes\nExample: ```" + prefix + "translate from:ro to:fr Salut, ce mai faci?```")
+ 
+      if (args[1] === undefined) {
+ 
+        const translatetextembed = new Discord.RichEmbed()
+        .setColor("FFFFFF")
+        .setDescription(`**Please give me something to translate.** ${prefix}translate <language> <text>`)
+ 
+        return message.channel.send(translatetextembed);
+ 
+      } else {
+ 
+        let transArg = args[0].toLowerCase();
+ 
+        args = args.join(' ').slice(prefix.length);
+        let translation;
+ 
+        if (!Langs.includes(transArg)) return message.channel.send(`**Language not found.**`);
+        args = args.slice(transArg.length);
+ 
+        translate(args, {to: transArg}).then(res => {
+ 
+          const embed = new Discord.RichEmbed()
+          .setDescription(res.text)
+          .setFooter(`english -> ${transArg}`)
+          .setColor("#4286f4");
+          return message.channel.send(embed);
+ 
+        });
+ 
+      }
+ 
     }
-}
-
+  };
 
 
 
