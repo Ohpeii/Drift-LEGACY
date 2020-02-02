@@ -283,22 +283,29 @@ bot.on('userUpdate', async ( oldUser, newUser ) => {
 
 
 
-              bot.on('message', message => {
-                if (message.content.startsWith("$avatar")) {
-                    var mentionned = message.mentions.users.first();
-                var x5bzm;
-                  if(mentionned){
-                      var x5bzm = mentionned;
-                  } else {
-                      var x5bzm = message.author;
-                      
-                  }
-                    const embed = new Discord.RichEmbed()
-                    .setColor("RANDOM")
-                    .setImage(`${x5bzm.avatarURL}`)
-                  message.channel.send(embed);
-                }
-            });
+bot.on("message", message => {
+  if (message.content.startsWith("$gitimg")) {
+    var user = message.mentions.users.first();
+    if (!user)
+      return message.channel.send({
+        files: [
+          {
+            name: "Knights.png",
+            attachment: message.author.avatarURL
+          }
+        ]
+      });
+    if (user)
+      return message.channel.send({
+        files: [
+          {
+            name: "Knights.png",
+            attachment: user.avatarURL
+          }
+        ]
+      });
+  }
+});
 
 
 
