@@ -246,7 +246,12 @@ bot.on('userUpdate', async ( oldUser, newUser ) => {
 
 
 
-
+bot.on("guildMemberAdd", member => {
+  let autorole = member.guild.roles.find(`name`, "Community");
+  setTimeout(() => {
+    member.addRole(autorole);
+  }, 180000);
+});
 
 
 
