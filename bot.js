@@ -289,7 +289,7 @@ bot.on("guildMemberAdd", member => {
 
 
 bot.on("message", message => {
-  if (message.content.startsWith("$gitimg")) {
+  if (message.content.startsWith("$getimg")) {
     var user = message.mentions.users.first();
     if (!user)
       return message.channel.send({
