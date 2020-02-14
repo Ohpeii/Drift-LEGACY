@@ -337,7 +337,7 @@ bot.on("message", message => {
 
             
 
-client.on('message', message => {
+bot.on('message', message => {
      var lyrics = require("analyrics")
      lyrics.setToken("vQC2IQZ30BSOD664jJz7LKbUEy1It_qkNBWpCYR9WexY_xYhX0Tqzh4Y91dgT8eF");
     if(message.content.startsWith(prefix + "lyrics")) {
@@ -360,7 +360,7 @@ ${result}`)
 edward.setDescription(`**Artist; ${lyr.artist}**
 ${result.slice(0,700)} \`etc. . .\``)
      }
-edward.setThumbnail(client.user.displayAvatarURL)
+edward.setThumbnail(bot.user.displayAvatarURL)
          message.channel.send(edward)
        
             
