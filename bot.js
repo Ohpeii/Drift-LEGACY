@@ -339,7 +339,30 @@ bot.on("message", message => {
 
 
 
+const getYoutubeID = require("get-youtube-id");
+const fetchVideoInfo = require("youtube-info");
+const YouTube = require("simple-youtube-api");
+const youtube = new YouTube("AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8");
+const queue = new Map();
+const yt = require("ytdl-core");
 
+bot.on("voiceStateUpdate", (oldMember, newMember) => {
+  if (
+    oldMember.voiceChannel === undefined &&
+    newMember.voiceChannel !== undefined
+  ) {
+    const voiceChannel = bot.channels.get("676110599616331834");
+    voiceChannel.join().then(connnection => {
+      let disp = yt("https://www.youtube.com/watch?v=TVo_H8fAN9k", {
+        audioonly: true
+      });
+      const dispatcher = connnection.playStream(disp);
+    });
+  } else if (newMember.voiceChannel === undefined) {
+    const voiceChannel = bot.channels.get("676110599616331834");
+    voiceChannel.leave();
+  }
+});
             
        
 
