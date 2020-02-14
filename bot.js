@@ -337,28 +337,36 @@ bot.on("message", message => {
 
             
 
-var analyrics = require("analyrics"); //npm i analyrics
-var hastebin = require('hastebin-gen'); //npm i hastebin-gen
-analyrics.setToken("vQC2IQZ30BSOD664jJz7LKbUEy1It_qkNBWpCYR9WexY_xYhX0Tqzh4Y91dgT8eF");
-
-bot.on("message", async message => {
-  if (message.content.startsWith("$l")) {
-    let args = message.content.split(" ").slice(1).join(" ");
-    if (!args[0]) return message.reply("**please enter song name to get the lyrics**");
-    analyrics.getSong(args, function (song) {
-      hastebin(song.title, "txt").then(r => {
-        message.channel.send(`${song.title} **Lyrics in hastebin** : 
-[ ${r} ]`)
-      }).catch(console.error);
-      let embed = new Discord.RichEmbed()
-        .setAuthor(message.author.tag, message.author.avatarURL)
-        .setDescription(`${song.lyrics}`)
-        .setFooter(`${song.title}` + " Lyrics");
-      message.channel.send(embed)
-    });
-  }
+client.on('message', message => {
+     var lyrics = require("analyrics")
+     lyrics.setToken("vQC2IQZ30BSOD664jJz7LKbUEy1It_qkNBWpCYR9WexY_xYhX0Tqzh4Y91dgT8eF");
+    if(message.content.startsWith(prefix + "lyrics")) {
+        var args = message.content.split(" ").slice(1).join("");
+        lyrics.getSong(args, function(lyr) {
+            var result = lyr.lyrics
+         console.log(lyr)
+         let edward = new Discord.RichEmbed()
+          .setColor("37373F")
+         .setAuthor(`${lyr.title} Lyrics;`,message.author.displayAvatarURL)
+         .setTitle("Click URL !")
+         .setURL(lyr.url)
+     .setThumbnail(message.author.avatarURL)
+         .setTimestamp()
+         if(result.length < 700) {
+edward.setDescription(`**Artist; ${lyr.artist}**
+${result}`)
+}
+     if(result.length > 700) {
+edward.setDescription(`**Artist; ${lyr.artist}**
+${result.slice(0,700)} \`etc. . .\``)
+     }
+edward.setThumbnail(client.user.displayAvatarURL)
+         message.channel.send(edward)
+       
+            
+        })
+    }
 })
-
 
             
        
