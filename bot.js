@@ -353,7 +353,7 @@ bot.on("message", async message => {
       let embed = new Discord.RichEmbed()
         .setAuthor(message.author.tag, message.author.avatarURL)
         .setDescription(`${song.lyrics}`)
-        .setFooter(`**${song.title}` + " Song Lyrics**");
+        .setFooter(`${song.title}` + " Lyrics");
       message.channel.send(embed)
     });
   }
