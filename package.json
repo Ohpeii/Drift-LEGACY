@@ -21,7 +21,7 @@
     "youtube-info": "1.3.2",
     "simple-youtube-api": "5.2.1",
     "ytdl-core": "1.0.7",
-    "ffmpeg-binaries": "^3.2.2-3",
+    "analyrics": "1.2.0",
     "weather.js": "^0.1.0"
   }
 }
