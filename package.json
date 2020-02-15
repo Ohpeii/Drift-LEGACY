@@ -23,6 +23,9 @@
     "ytdl-core": "1.0.7",
     "analyrics": "1.2.0",
     "hastebin-gen": "2.0.5",
+    "fs-nextra": "0.4.7",
+    "snekfetch": "4.0.4",
+    "jimp": "0.9.3",
     "weather.js": "^0.1.0"
   }
 }
