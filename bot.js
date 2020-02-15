@@ -1,6 +1,9 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const Canvas = require('canvas');
+const { readFile, readFileSync } = require('fs-nextra');
+const { get } = require('snekfetch');
+const jimp = require('jimp');
 const fs = require('fs');
 const prefix = "$"
  
@@ -370,7 +373,186 @@ bot.on("message", async message => {
 
 
 
-
+bot.on('message', message => {
+    if (message.content == ('$clock')) {
+ 
+        const w = ['./file.png'];
+ 
+        let Image = Canvas.Image,
+            canvas = new Canvas.Canvas(400, 400),
+            ctx = canvas.getContext('2d');
+        var radius = canvas.height / 2;
+        var currentTime = new Date(),
+            hours = currentTime.getHours(),
+            minute = currentTime.getMinutes();
+        var second = currentTime.getSeconds();
+        ctx.translate(radius, radius);
+        radius = radius * 0.90
+ 
+        ctx.patternQuality = 'bilinear';
+        ctx.filter = 'bilinear';
+        ctx.antialias = 'subpixel';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+        ctx.shadowOffsetY = 2;
+        ctx.shadowBlur = 2;
+        fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+            if (err) return console.log(err);
+            let BG = Canvas.Image;
+            let ground = new Image;
+            ground.src = Background;
+            ctx.drawImage(ground, 0, 0, 400, 169);
+        })
+ 
+ 
+        ctx = canvas.getContext('2d');
+        ctx.patternQuality = 'bilinear';
+        ctx.filter = 'bilinear';
+        ctx.antialias = 'subpixel';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+        ctx.shadowOffsetY = 2;
+        ctx.shadowBlur = 2;
+        fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+            if (err) return console.log(err);
+            let BG = Canvas.Image;
+ 
+        })
+        let user = message.mentions.users.first();
+        var men = message.mentions.users.first();
+        var heg;
+        if (men) {
+            heg = men
+        } else {
+            heg = message.author
+        }
+        var mentionned = message.mentions.members.first();
+        var h;
+        if (mentionned) {
+            h = mentionned
+        } else {
+            h = message.member
+        }
+        var ment = message.mentions.users.first();
+        var getvalueof;
+        if (ment) {
+            getvalueof = ment;
+        } else {
+            getvalueof = message.author;
+        } //ظ…ط§ ط®طµظƒ ,_,
+        let url = getvalueof.displayAvatarURL.endsWith(".webp") ? getvalueof.displayAvatarURL.slice(5, -20) + ".png" : getvalueof.displayAvatarURL;
+        jimp.read(url, (err, ava) => {
+            if (err) return console.log(err);
+            ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                if (err) return console.log(err);
+ 
+ 
+                function drawFace(ctx, radius) {
+                    var grad;
+                    ctx.beginPath();
+                    ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+                    ctx.fillStyle = 'white';
+                    ctx.fill();
+                    grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
+                    grad.addColorStop(0, '#333');
+                    grad.addColorStop(0.5, 'black');
+                    grad.addColorStop(1, '#333');
+                    ctx.strokeStyle = grad;
+                    ctx.lineWidth = radius * 0.1;
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
+                    ctx.fillStyle = '#333';
+                    ctx.fill();
+                }
+                drawClock();
+ 
+                function drawClock() {
+                    drawFace(ctx, radius);
+                    drawNumbers(ctx, radius);
+                    drawTime(ctx, radius);
+                }
+ 
+                function drawNumbers(ctx, radius) {
+                    var ang;
+                    var num;
+                    ctx.font = radius * 0.15 + "px arial";
+                    ctx.textBaseline = "middle";
+                    ctx.textAlign = "center";
+                    for (num = 1; num < 13; num++) {
+                        ang = num * Math.PI / 6;
+                        ctx.rotate(ang);
+                        ctx.translate(0, -radius * 0.85);
+                        ctx.rotate(-ang);
+                        ctx.fillText(num.toString(), 0, 0);
+                        ctx.rotate(ang);
+                        ctx.translate(0, radius * 0.85);
+                        ctx.rotate(-ang);
+                    }
+                }
+ 
+                function drawTime(ctx, radius) {
+ 
+                    if (hours > 12) {
+                        hours -= 12;
+                    } else if (hours == 0) {
+                        hours = "12";
+                    }
+                    if (minute < 10) {
+                        minute = '0' + minute;
+                    }
+                    //hour
+                    hours = hours % 12;
+                    hours = (hours * Math.PI / 6) +
+                        (minute * Math.PI / (6 * 60)) +
+                        (second * Math.PI / (360 * 60));
+                    drawHand(ctx, hours, radius * 0.5, radius * 0.07);
+                    //minute
+                    minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
+                    drawHand(ctx, minute, radius * 0.8, radius * 0.07);
+                }
+ 
+                function drawHand(ctx, pos, length, width) {
+                    ctx.beginPath();
+                    ctx.lineWidth = width;
+                    ctx.lineCap = "round";
+                    ctx.moveTo(0, 0);
+                    ctx.rotate(pos);
+                    ctx.lineTo(0, -length);
+                    ctx.stroke();
+                    ctx.rotate(-pos);
+                }
+ 
+ 
+ 
+ 
+ 
+ 
+                var currentTime = new Date(),
+                    hours2 = currentTime.getHours(),
+                    minutes2 = currentTime.getMinutes(),
+                    seconds2 = currentTime.getSeconds();
+ 
+                if (hours2 > 12) {
+                    hours2 -= 12;
+                } else if (hours2 == 0) {
+                    hours2 = "12";
+                }
+                if (minutes2 < 10) {
+                    minutes2 = '0' + minutes2;
+                }
+ 
+                message.channel.send((`**:clock: | الساعة في الوقت الحالي : ${hours2}:${minutes2}:${seconds2}**`));
+ 
+ 
+ 
+                message.channel.sendFile(canvas.toBuffer());
+ 
+ 
+ 
+ 
+            })
+        })
+    }
+});
 
 
 
