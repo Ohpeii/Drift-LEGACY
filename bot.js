@@ -540,7 +540,7 @@ bot.on('message', message => {
                     minutes2 = '0' + minutes2;
                 }
  
-                message.channel.send((`**:clock: | الساعة في الوقت الحالي : ${hours2}:${minutes2}:${seconds2}**`));
+                message.channel.send((`**The time now is : ${hours2}:${minutes2}**`));
  
  
  
