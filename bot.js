@@ -101,7 +101,7 @@ bot.on("message", async message => {
 const { getInfoFromName } = require('myanimelists');
  
  
-          client.on('message', message => {
+          bot.on('message', message => {
             let anime = message.content.split(" ").slice(1).join(" ")
             if(message.content.startsWith(prefix + 'anime')) {
                 if(!anime) return message.channel.send('Please Write The Anime Name Example: !anime dragon ball')
