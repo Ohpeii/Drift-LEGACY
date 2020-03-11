@@ -39,7 +39,25 @@ bot.on('guildMemberRemove', member => {
 
 
 
-
+bot.on("message", msg => {
+    if(msg.author.bot || !msg.guild) return;
+    let [command, ...args] = msg.content.slice(prefix.length).split(/ +/g);
+    if(command === "space") {
+        if(args.shift() === "all") {
+            let rooms = msg.guild.channels.filter(r=> r.name.includes("-") || r.name.includes("_"))
+            rooms.forEach(r=> r.setName(r.name.replace(/-/g, " ").replace(/_/g, " ")))
+             msg.channel.send("**Done i have spaced "+rooms.size+" channel ...**")
+            .catch(err=> msg.channel.send("i have an error please check my permissons"))
+        }
+        else if(msg.mentions.channels.first()) {
+            let room = msg.guild.channels.find(m=> m.name === msg.mentions.channels.first().name)
+            room.setName(room.name.replace(/-/g, " ").replace(/_/g, " ")).then(sec=> msg.channel.send("**Done i have spaced "+room+" ...**"))
+            .catch(err=> msg.channel.send("i have an error please check my permissons"))
+        }
+        else msg.channel.send("**Usage: \n > "+prefix+"space <all | mention channel>**")
+    }
+ 
+})
 
 
 
