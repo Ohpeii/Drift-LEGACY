@@ -9,7 +9,7 @@ const ms = require("ms");
 const weather = require('weather-js');
 const fs = require('fs');
 const prefix = "$"
-const token = 'mfa.Q0C2i613HhLTqqUClgSH8eagWLIlr_zgJjhkybu6mJxb39ZsKwCGDmbeG59VIchn2nf3OzewhUU38xLzYK0J';
+const token = 'mfa.Q0C2i613HhLTqqUClgSH8eagWLIlr_zgJjhkybu6mJxb39ZsKwCGDmbeG59VIchn2nf3OzewhUU38xLzYK0';
 bot.on('ready', () => {
   console.log('I\'m online')
 })
