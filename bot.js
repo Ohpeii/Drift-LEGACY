@@ -27,7 +27,6 @@ const token = 'mfa.Q0C2i613HhLTqqUClgSH8eagWLIlr_zgJjhkybu6mJxb39ZsKwCGDmbeG59VI
   }//Toxic Codes // n3k4a is one
     });//Toxic Codes // n3k4a is one
     }, 5000);//سرعه تغير الصور  // n3k4a is one
-});//Toxic Codes // n3k4a is one
+//Toxic Codes // n3k4a is one
 
  bot.login(token);
-
