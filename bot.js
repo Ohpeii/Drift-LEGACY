@@ -1,6 +1,6 @@
  // هنا  تحط التون علشان الصور تتحرك 
-const Token = "mfa.Q0C2i613HhLTqqUClgSH8eagWLIlr_zgJjhkybu6mJxb39ZsKwCGDmbeG59VIchn2nf3OzewhUU38xLzYK0J"
 
+const Token = "mfa.Q0C2i613HhLTqqUClgSH8eagWLIlr_zgJjhkybu6mJxb39ZsKwCGDmbeG59VIchn2nf3OzewhUU38xLzYK0J"
 const Discord = require('discord.js')//Toxic Codes // n3k4a is one
 const client = new Discord.Client();//Toxic Codes // n3k4a is one
 client.on('ready', function(){//Toxic Codes // n3k4a is one
