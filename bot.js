@@ -10,6 +10,9 @@ const weather = require('weather-js');
 const fs = require('fs');
 const prefix = "$"
 const token = 'mfa.Q0C2i613HhLTqqUClgSH8eagWLIlr_zgJjhkybu6mJxb39ZsKwCGDmbeG59VIchn2nf3OzewhUU38xLzYK0J';
+bot.on('ready', () => {
+  console.log('I\'m online')
+})
    
    // var s = ['483063515981283354','483063446376677386','483063378726879232','483063354332545045','483063463179190293']; // صور اضافيه
    var s = ['483055660209012736','480169573530861578','483055655800930315'];  // صور  الي بتشتغل
