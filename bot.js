@@ -22,7 +22,7 @@ bot.on('ready', () => {
     type: 1,//Toxic Codes // n3k4a is one
      url: 'https://www.twitch.tv/Robot',//Toxic Codes // n3k4a is one
     name: 'im try banned ',  // الكلام الي في التوتش//Toxic Codes // n3k4a is one
-    application_id: '692792804610408589', // ايدي البوت او ايدي الحساب حقك //Toxic Codes // n3k4a is one
+    application_id: '477187715658547201', // ايدي البوت او ايدي الحساب حقك //Toxic Codes // n3k4a is one
      assets: {//Toxic Codes // n3k4a is one
          large_image:   `${s[Math.floor(Math.random() * s.length)]}`,//Toxic Codes // n3k4a is one
  
