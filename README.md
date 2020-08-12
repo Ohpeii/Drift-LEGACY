@@ -3,9 +3,6 @@
 # Drift: About and Contributing
 We would love it if you would help contribute! To contribute:
 
- ##### Clone the repo
-`git clone https://github.com/ImmunityNetwork/Drift`
-
  ##### Install the dependencies
 `npm install`
 
