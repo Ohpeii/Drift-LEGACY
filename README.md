@@ -18,6 +18,6 @@ We don't currently need to use the youtube api key so you can ignore that. You c
 }
 ```
 ##### You should be ready to go!
-If you need help setting up join our support server and ask a developer. discord.gg/vW8GtY2
+If you need help setting up join our support server and ask a developer. 
 
- ##### Also check out our trello for things you can help out with and features being worked on [Here](https://trello.com/b/s1b7yjdh/drift)!
+
